@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"soo.aa.bb","c":"A","l":"A()","u":"%3Cinit%3E()"},{"p":"soo.aa.bb","c":"A","l":"creator"},{"p":"soo.aa.bb","c":"A","l":"p(String)","u":"p(java.lang.String)"},{"p":"soo.aa.bb","c":"A","l":"pln(String)","u":"pln(java.lang.String)"},{"p":"soo.aa.bb","c":"A","l":"year"}];updateSearchResults();

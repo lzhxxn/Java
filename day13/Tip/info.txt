@@ -1,0 +1,6 @@
+original:original.txt
+original_back:original.bak
+filtered:filtered.txt
+time:60
+interval:10
+dirScore:score
