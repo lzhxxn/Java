@@ -1,0 +1,318 @@
+< JavaScript_Study Day_01 >
+
+// Man 속성을 가진 객체 생성
+function Man() {
+	this.name = "Anonymous";
+	this.gender = "Man";
+	this.Run = function () {
+		return this.name + " is Running. ";
+	}
+	this.Sleep = function () {
+		return this.name + " is Sleeping. ";
+	}
+}
+
+// SoccerPlayer 속성을 가진 객체 생성
+function SoccerPlayer () {
+	this.base = new Man();
+	this.name = "Anonymous Soccer Player.";
+	this.Run = function () {
+		// overriding이 가능하다.
+		return this.base.Run();
+	}
+	this.Pass = function () {
+		return this.name+" is passing to other player!";
+	}
+};
+
+// SoccerPlayer 의 원형은 Man 이다.
+// SoccerPlayer 로 객체화한다.
+SoccerPlayer.prototype = new Man();
+var player = new SoccerPlayer();
+
+player.name; //Anonymous Soccer Player. SoccerPlayer 객체의 이름이 출력된다.
+player.gender; // Man 부모 클래스의 성별이 출력된다.
+player.Run(); //Anonymous is Running. 원형의 메소드를 실행한다.
+//player.Run() 는 부모 클래스의 함수를 호출하기 때문에 이름이 Anonymous Soccer Player가 아닌 Anonymous 이다.
+player.Pass(); //Anonymous Soccer Player is passing to other player! 
+player.Sleep(); //Anonymous Soccer Player is Sleeping.
+//player.Pass();와 player.Sleep();은 자식클래스로 객체화 되었기 때문에,
+//이름이 Anonymous Soccer Player이다.
+
+
+
+< JavaScript_Study Day_02 >
+
+* Substring은 내가 필요로하는 부분을 추출할 수 있게 해주는 함수이다.
+String map = superman;
+map.substring(5,7);
+man을 리턴한다. 
+
+1. 동적 형변환 
+- 다른 스크립트 언어들이 그렇듯 자바 스크립트 역시 값에 따라 변수의 형변환이 자동으로 이루어진다.
+
+2. 배열
+- var arr = {'hello', 'javascript', 'world'};
+	console.log(arr[0]);
+	console.log(arr[1]);
+	console.log(arr[2]);
+
+- var obj = {
+	firstname : "ji hoon",
+	lastname : "lee",
+	age : 28
+};
+	console.log(obj.firstname);
+	console.log(obj.lastname);
+	console.log(obj.age);
+
+- var person = {
+	firstname : "ji hoon",
+	lastname : "lee",
+	height : 189,
+	fullName : function() {
+		return firstname + lastname;
+	}
+};
+	console.log(fullName);
+
+3. Javascript with web(html)
+- 프로그램이 시작됨과 동시에 스크립트 코드가 로드된다.
+- ```document.getElementById('demo')```코드로 p 태그에 대한 객체를 받아온다.
+- ```p```태그 내부를 ```"Hello javascript World"로 대체한다.
+```
+<p id="demo"> This is P tag </p>
+
+<script type="text/javascript">
+	document.getElementById('demo').innerHTML = "Hello javascript World";
+</script>
+
+4. Javascript function (함수)
+- javascript는 함수를 제공한다.
+```
+<p id="demo"></p>
+<button type="button" onclick="_func(22)">button</button>
+
+<script type="text/javascript">
+function myFunc(a, b) {
+  return a+b;
+}
+document.getElementById("demo").innerHTML = myFunc(5, 4);
+</script>
+
+<p id="demo"></p>
+<button type="button" onclick="_func(22)">button</button>
+
+<script type="text/javascript">
+function _func(num) {
+  document.getElementById("demo").innerHTML = num*2;
+}
+</script>
+```
+
+5. Javascript의 변수
+- ```var```로 변수를 선언한다. ( ```var```은 모든 자료형을 내포하고 있다. int, double, string, Object, boolean 등 )
+- 대소문자를 구별한다.
+```
+var str1 = 'Hello';
+var str2 = 'World';
+console.log(str1+' '+str2);
+```
+
+```
+document.getElementById("type").innerHTML =
+  typeof "Parker" + "<br>" +
+  typeof 123 + "<br>" +
+  typeof {num:1, str:"hello"} + "<br>" +
+  typeof 123.456 + "<br>" +
+  typeof [1,2,3] + "<br>"
+```
+=> 
+string
+number
+object
+number
+object
+
+6. [Javascript] 날짜 함수
+```
+var date = new Date();
+var date2 = new Date(99, 5,24,11,33,20,0);
+var date3 = new Date("October 12, 2018 12:11:22");
+console.log(date);
+console.log(date2);
+console.log(date3);
+
+date.getDay(); // 요일을 숫자로 받아온다.
+date.getMonth()+1; // 월을 받아온다.(0부터 시작)
+date.getFullYear(); // 년도를 받아온다.
+date.getDate(); // 일을 받아온다.
+date.getHours(); // 시간을 받아온다.
+date.getMinutes(); // 분을 받아온다.
+date.getSeconds(); // 초를 받아온다.
+```
+=>
+Tue May 04 2021 11:08:35 GMT+0900 (대한민국 표준시)
+Thu Jun 24 1999 11:33:20 GMT+0900 (대한민국 표준시)
+Fri Oct 12 2018 12:11:22 GMT+0900 (대한민국 표준시)
+
+7. [Javascript] Interval
+```
+<div class="title">
+  <h1>현재시간은</h1>
+</div>
+<div class="containers">
+  <p id="current"></p>
+</div>
+<script type="text/javascript">
+  function currentTime() {
+    document.getElementById('current').innerHTML = new Date();
+  }
+
+  setInterval("currentTime()", 1000);
+</script>
+```
+* ```setInterval("currentTime()", 1000);``` 은 currentTime() 함수를 1초에 한번씩 실행시킨다.
+
+```
+<form name="form1">
+  전화하는 시간은
+  <input type="text" size="10" name="formSec"> 입니다.
+
+  <br>
+  
+  전화 요금은
+  <input type="text" size="10" name="formWon"> 입니다.
+</form>
+
+<script type="text/javascript">
+  var myCount = 1;
+
+  function func() {
+    document.form1.formSec.value = myCount + "초";
+    document.form1.formWon.value = ((Math.floor(myCount/5) * 10) + 10) + "원";
+    myCount = myCount + 1;
+  }
+
+  setInterval("func()", 1000);
+</script>
+```
+* ```setInterval("func()", 1000);``` 은 func() 함수를 1초에 한번씩 실행시킨다.
+
+8. [javascript] 문자열 함수
+.indexOf() : 해당 문자열이 있는 위치를 반환합니다.
+.lastIndexOf() : 해당 문자열이 있는 위치를 뒤에서 부터 찾아 반환합니다.
+.search() : 해당 문자열이 있는 위치를 반환합니다.
+.slice() : 앞 index부터 뒤 index까지의 문자열을 반환합니다.
+.substring() : 앞 index부터 뒤 index까지의 문자열을 반환합니다.
+.charAt() : 해당 인덱스의 문자를 반환합니다.
+
+9. [javascript] Event처리
+javascript는 event를 기반으로 동작한다. 특정 태그에 특정 이벤트를 적용하고 활용할 수 있다.
+
+#### onchange ( select and option 태그를 사용하여 원하는 경로로 이동하는 코드 )
+```
+<form action="" name="form1">
+ <select name="links" onchange="goLink()">
+	<option selected disabled hidden>Choose here !</option>
+	<optgroup label="portal">
+		<option value = "https://www.google.com">Google</option>
+		<option value = "https://www.naver.com">Naver</option>
+		<option value = "https://www.daum.net">Daum</option>
+	</optgroup>
+	
+	<optgroup label="musci">
+		<option value = "https://www.genie.co.kr">Genie</option>
+		<option value = "https://www.melon.com">Melon</option>
+		<option value = "https://www.mnet.com">Mnet</option>
+	</optgroup>
+ </select>
+</form>
+
+<script type="text/javascript">
+function goLink() {
+	var n = document.form1.links.selectedIndex;
+	
+	if (n != 0){
+		location.href=document.form1.links.options[n].value;
+	}
+}
+</script>
+```
+
+#### onload 
+- 문서의 모든 콘텐츠가 로드된 후 발생하는 이벤트이다. 
+```
+window.onload \= function() { //실행될 코드
+}
+```
+- 요소에 속성(attribute)으로 지정될 수 있다.
+```
+<body onload\="실행될 코드"\> 
+```
+- 객체(Object)가 로드되었을때 실행될 코드를 설정할 수 있다.
+```
+document.getElementById("myFrame").onload \= function() { //실행될 코드
+}
+```
+- jQuery에서는 onload와 같은 동작을 하는 load 메소드를 제공한다.
+```
+$(window).load( function() { //실행될 코드
+})
+```
+
+```
+//자바스크립트
+<script>
+  window.onload = function(){
+  var a = document.getElementById( 'test' );
+  a.style.color = "blue"
+  }
+</script>
+<p id = "test">hello</p>
+```
+
+```
+//제이쿼리
+<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<script>
+$(document).ready(function(){
+    var a = $( '#test' );
+    a.style.color = "blue"
+  });
+}
+
+== $(function(){
+  var a = $( '#test' );
+  a.style.color = "blue"
+});
+```
+* 브라우저가 웹 문서를 읽기 시작하면 DOM이 생성된다.
+DOM이란, Document Object Model - 문서 객체 모델이다. 
+문서는 HTML과 XML과 같은 것들을 문서라 하고 이러한 문서를 구조적으로 표현하는 방식을 제공하는 것이 DOM이라고 합니다.
+DOM(HTML이나 XML문서)이 생성되면, $(document).ready(function( ~~~ 이 실행된다.
+그 후, 이미지가 로드되면 페이지 로딩은 완료되고 $(window).load(function( ~~ 가 실행된다.
+
+### onblur
+- 포커스가 다른 곳으로 이동이 되었을때 실행된다.
+```
+<form action="#">
+age: <input type="text" onblur="isRegNum(this)" size="3" maxlength="3"> years old. <br>
+	write only number.
+
+</form>
+<script type="text/javascript">
+/* object 가 넘어온다. */
+function isRegNum(obj) {
+	var str = obj.value;
+
+	// 숫자가 아닌 문자가 포함된 경우를 나타내는 정규식
+	if(str.match(/[^0-9]/g)){
+		alert("문자열이 포함되어 있습니다.");
+		obj.value="";
+		return false;
+	}
+}
+</script>
+```
+
