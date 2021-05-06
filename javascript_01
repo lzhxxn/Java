@@ -316,3 +316,56 @@ function isRegNum(obj) {
 </script>
 ```
 
+### onchange
+- 태그가 변경됐을때 스크립트 함수, javascript 코드가 실행된다. 굉장히 많이 사용되는 속성이다.
+```
+<input type="text" value="hello" onchange="bgcolor_yellow(this)" />
+<input type="text" value="world" onchange="bgcolor_yellow(this)" />
+ 
+<script>
+function bgcolor_yellow(obj) {
+  obj.style.backgroundColor = 'yellow';
+}
+</script>
+```
+
+### onkeydown, onkeyup
+```
+<form action="#">
+<p> 입력:
+	<input type="text" onkeydown="fCopy(this.form)" onkeyup="fCopy(this.form)" name="txt" size="40">
+</p>
+
+<p> 확인:
+	<input type="text" name="copy" size="40" readonly >
+</p>
+
+</form>
+
+<script type="text/javascript">
+function fCopy(frameObj) {
+	frameObj.elements["copy"].value = frameObj.elements["txt"].value;
+}
+</script>
+```
+
+### 간단한 애니메이션
+- javascript에서 문자열을 다루는 함수를 사용한 간단한 애니메이션을 구현합니다.
+```
+<h1>여기는 index입니다.</h1>
+
+<form name="myForm">
+<input type="text" size="30" name="myFormMsg">
+</form>
+
+<script type="text/javascript">
+var myMsg = "환영합니다";
+var myCnt = 0;
+
+function myFunc() {
+	document.myForm.myFormMsg.value = myMsg.substring(0, myCnt) + "_";
+	myCnt = (myCnt == myMsg.length) ? 0 : myCnt + 1;
+}
+setInterval("myFunc()", 500);
+</script>
+
